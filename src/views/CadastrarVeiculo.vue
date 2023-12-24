@@ -49,16 +49,14 @@
         };
 
         try {
-          // Substitua a URL abaixo pela URL real da sua API
+
           const response = await axios.post('http://localhost/api-veiculos-laravel/public/api/cadastrar-veiculos', formulario);
 
           console.log('Resposta do servidor:', response.data);
 
           } catch (error) {
-          console.error('Erro ao enviar o formulário:', error);
+            console.error('Erro ao enviar o formulário:', error);
           }
-      
-      console.log('Formulário:', formulario);
     },
   },
   });
