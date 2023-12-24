@@ -1,0 +1,7 @@
+{
+  "name": "app-api-veiculos",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
