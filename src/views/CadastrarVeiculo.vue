@@ -17,18 +17,24 @@
         <div slot="label">Placa <ion-text color="danger">*</ion-text></div>
       </ion-input>
     </ion-item>
-  </ion-list>
 
-  <ion-button expand="full" @click="submitForm">Enviar</ion-button>
+    <ion-button expand="full" @click="submitForm">Enviar</ion-button>
+
+    <ion-item>
+      <div v-if="subimitted" class="alert">
+        <p>O formulário foi enviado com sucesso!</p>
+      </div>
+    </ion-item>
+  </ion-list>
 </template>
 
 <script lang="ts">
   import axios from 'axios'
-  import { IonInput, IonItem, IonList, IonText } from '@ionic/vue';
+  import { IonInput, IonItem, IonList, IonText, IonButton } from '@ionic/vue';
   import { defineComponent } from 'vue';
 
   export default defineComponent({
-    components: { IonInput, IonItem, IonList, IonText },
+    components: { IonInput, IonItem, IonList, IonText, IonButton },
 
     data() {
       return {
@@ -36,6 +42,7 @@
         cor: '',
         ano: '',
         placa: '',
+        subimitted: false,
       };
     },
 
@@ -45,19 +52,34 @@
           modelo: this.modelo,
           cor: this.cor,
           ano: this.ano,
-          placa: this.placa
+          placa: this.placa,
         };
 
         try {
-
           const response = await axios.post('http://localhost/api-veiculos-laravel/public/api/cadastrar-veiculos', formulario);
 
+          this.subimitted = true;
           console.log('Resposta do servidor:', response.data);
+
+          setTimeout(() => {
+            this.subimitted = false;
+          }, 5000);
 
           } catch (error) {
             console.error('Erro ao enviar o formulário:', error);
           }
+      },
     },
-  },
   });
 </script>
+
+<style scoped>
+  .alert{
+    padding: 5px;
+    background-color: #2cf02c;
+    border: 1px solid;
+    border-radius: 10px;
+    font-weight: 500;
+    color: black;
+  }
+</style>
