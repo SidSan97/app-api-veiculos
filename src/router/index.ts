@@ -21,8 +21,8 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/CadastrarVeiculo.vue')
       },
       {
-        path: 'tab2',
-        component: () => import('@/views/Tab2Page.vue')
+        path: 'ListarVeiculos',
+        component: () => import('@/views/ListarVeiculos.vue')
       },
       {
         path: 'tab3',

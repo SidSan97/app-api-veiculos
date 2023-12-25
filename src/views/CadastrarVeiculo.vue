@@ -1,5 +1,6 @@
 <template>
-  <ion-list>
+  <ion-page>
+    <ion-list>
     <ion-item>
       <ion-input label-placement="floating" v-model="modelo">
         <div slot="label">Modelo <ion-text color="danger">*</ion-text></div>
@@ -26,15 +27,16 @@
       </div>
     </ion-item>
   </ion-list>
+  </ion-page>
 </template>
 
 <script lang="ts">
   import axios from 'axios'
-  import { IonInput, IonItem, IonList, IonText, IonButton } from '@ionic/vue';
+  import { IonInput, IonItem, IonList, IonText, IonButton, IonPage} from '@ionic/vue';
   import { defineComponent } from 'vue';
 
   export default defineComponent({
-    components: { IonInput, IonItem, IonList, IonText, IonButton },
+    components: { IonInput, IonItem, IonList, IonText, IonButton, IonPage },
 
     data() {
       return {

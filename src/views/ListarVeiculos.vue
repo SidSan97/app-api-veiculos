@@ -17,7 +17,13 @@
   </ion-page>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
+import axios from 'axios'
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
 import ExploreContainer from '@/components/ExploreContainer.vue';
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+  components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage },
+});
 </script>
