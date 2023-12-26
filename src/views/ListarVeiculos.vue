@@ -1,29 +1,51 @@
 <template>
   <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Tab 2</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">Tab 2</ion-title>
-        </ion-toolbar>
-      </ion-header>
-
-      <ExploreContainer name="Tab 2 page" />
+    <ion-content>
+      <h3 align="center">Listagem de veículos cadastrados</h3>
+      
+      <ion-card v-if="dadosRecebidos">
+        <ion-card-header v-for="carro in dadosRecebidos" :key="carro.id" class="card">
+          <ion-card-title>{{carro.modelo}}</ion-card-title>
+          <ion-card-subtitle>Cor: {{carro.cor}}</ion-card-subtitle>
+          <ion-card-subtitle>Ano: {{carro.ano}}</ion-card-subtitle>
+          <ion-card-subtitle><strong>Placa: {{carro.placa}}</strong></ion-card-subtitle>
+        </ion-card-header>
+      </ion-card>
     </ion-content>
   </ion-page>
 </template>
 
 <script lang="ts">
-import axios from 'axios'
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
-import ExploreContainer from '@/components/ExploreContainer.vue';
-import { defineComponent } from 'vue';
+  import axios from 'axios'
+  import { IonPage, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonRefresher} from '@ionic/vue';
+  import { defineComponent } from 'vue';
 
-export default defineComponent({
-  components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage },
-});
+  export default defineComponent({
+    components: { IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonPage, IonContent, IonRefresher},
+    data() {
+      return {
+        dadosRecebidos: null,
+      };
+    },
+    mounted() {
+      this.realizarRequisicao();
+    },
+    methods: {
+      async realizarRequisicao() {
+        try {
+          const response = await axios.get('http://localhost/api-veiculos-laravel/public/api/veiculos');
+          
+          this.dadosRecebidos = response.data;
+        } catch (error) {
+          console.error('Erro na requisição GET:', error);
+        }
+      },
+    },
+  });
 </script>
+
+<style scoped>
+  .card {
+    border-bottom: 1px solid silver !important;
+  }
+</style>
