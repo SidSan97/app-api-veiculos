@@ -5,7 +5,8 @@
 
       <ion-list>
         <ion-item>
-          <ion-select label="Escolha parâmetro da busca" label-placement="floating" v-model="parametro">
+          <ion-select label-placement="floating" v-model="parametro">
+            <div slot="label">Escolha parâmetro da busca <ion-text color="danger">*</ion-text></div>
             <ion-select-option value="modelo">Modelo</ion-select-option>
             <ion-select-option value="cor">Cor</ion-select-option>
             <ion-select-option value="ano">Ano</ion-select-option>
