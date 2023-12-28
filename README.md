@@ -1,1 +1,1 @@
-App criado para consumir API Laravel
+App criado para consumir API Laravel usando Ionic
